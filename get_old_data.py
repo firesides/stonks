@@ -28,8 +28,13 @@ for ticker in tickerStrings:
 
     print(tickerDf)
 
-    # Save data to csv
-    tickerDf.to_csv(ticker + '.csv')
+    # if dataframe is empty, delete the row from stock_info.csv
+    if tickerDf.empty:
+        print('empty')
+        stock_list = stock_list[stock_list.Ticker != ticker]
+        stock_list.to_csv('stock_info.csv', index=False)
+
+
 
 
 
